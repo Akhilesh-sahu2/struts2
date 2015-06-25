@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC 
+  		"-//Apache Struts//XWork Validator 1.0.2//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+  		  		
+<validators>
+<field name="fname">
+	<field-validator type="requiredstring">		
+		<message>First name can not be empty</message>
+	</field-validator>
+</field>
+<field name="lname">
+	<field-validator type="requiredstring">		
+		<message>Last name can not be empty</message>
+	</field-validator>
+</field>
+
+<field name="age">
+	<field-validator type="double">		
+		<message>Age Must be in Double</message>
+	</field-validator>
+</field>
+		
+</validators>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.action.extension" value ="do"></constant>
+	<constant name="struts.devMode" value ="true"></constant>
+	<constant name="struts.custom.i18n.resources" value ="gloabl"></constant>
+
+	<package name="login" namespace="/login" extends="struts-default">
+		<interceptors>
+			<interceptor name ="mytimer" class = "com.psl.MyTimerInterceptor"></interceptor>
+			<interceptor-stack name="MyInterceptorStack">
+				 <interceptor-ref name="mytimer"/>
+				  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="MyInterceptorStack"/>
+<!-- 	Configuration for exception mapping -->
+		<global-results>
+			<result name="globalerror">error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="globalerror" exception="java.io.FileNotFoundException"></exception-mapping>
+		</global-exception-mappings>
+<!-- 	End of Configuration for exception mapping -->
+		<action name="loginform_*" class="com.psl.LoginFormAction" method="{1}">
+			<result name="success">login.jsp</result>
+		</action>
+		<action name="login" class="com.psl.LoginAction">
+			<result name="success">empForm.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">login.jsp</result>
+		</action>
+		
+		<action name="employee" class="com.psl.EmployeeAction">
+			<result name="success">success.jsp</result>
+			<result name="input">empForm.jsp</result>
+		</action>
+		<action name="cvupload" class="com.psl.ResumeUploadAction">
+			<result name="uploadsuccess">uploadsuccess.jsp</result>
+			<result name="input">success.jsp</result>
+		</action>
+		
+	</package>
+</struts>
